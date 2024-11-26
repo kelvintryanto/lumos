@@ -11,27 +11,35 @@ module.exports = {
       },
       UserId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
       date: {
         type: Sequelize.DATE,
+        allowNull: false,
       },
       content: {
         type: Sequelize.TEXT,
+        allowNull: false,
       },
       mood: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       aiTitle: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       aiInsight: {
         type: Sequelize.TEXT,
+        allowNull: false,
       },
       aiQuestion: {
         type: Sequelize.TEXT,
+        allowNull: false,
       },
       imageUrl: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

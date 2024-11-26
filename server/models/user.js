@@ -9,18 +9,48 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Journal, { foreignKey: {} });
+      User.hasMany(models.Journal, { foreignKey: "UserId" });
     }
   }
   User.init(
     {
-      username: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
+      username: {
+        type: DataTypes.STRING,
+        unique: {
+          msg: "Username not available. Please try again!",
+        },
+        validate: {
+          notNull: { msg: "Username required" },
+          notEmpty: { msg: "Username required" },
+        },
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: {
+          msg: "Email is registered. Please login!",
+        },
+        validate: {
+          notNull: { msg: "Email required" },
+          notEmpty: { msg: "Email required" },
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Password required" },
+          notEmpty: { msg: "Password required" },
+        },
+      },
     },
     {
       sequelize,
       modelName: "User",
+      hooks: {
+        beforeCreate: (user) => {
+          user.password = has;
+        },
+      },
     }
   );
   return User;
