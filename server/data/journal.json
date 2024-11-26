@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1",
+    "user_id": "1",
+    "date": "2023-11-01T08:30:00+07:00",
+    "content": "Hari ini saya merasa sangat energik setelah lari pagi.",
+    "mood": "senang",
+    "aiTitle": "Pagi yang Produktif",
+    "aiInsight": "Berolahraga di pagi hari meningkatkan energi Anda dan menyiapkan mood positif untuk hari tersebut.",
+    "aiQuestion": "Apa kegiatan lain yang bisa Anda coba untuk memulai hari dengan baik?"
+  },
+  {
+    "id": "2",
+    "user_id": "1",
+    "date": "2023-11-01T21:45:00+07:00",
+    "content": "Merasa sedih setelah menonton film yang mengharukan.",
+    "mood": "sedih",
+    "aiTitle": "Emosi Setelah Film",
+    "aiInsight": "Film sering memicu refleksi pribadi dan emosi yang mendalam.",
+    "aiQuestion": "Bagaimana film tersebut menghubungkan dengan pengalaman pribadi Anda?"
+  },
+  {
+    "id": "3",
+    "user_id": "2",
+    "date": "2023-11-02T15:00:00+07:00",
+    "content": "Hari yang sibuk di kantor, banyak tugas yang harus diselesaikan.",
+    "mood": "netral",
+    "aiTitle": "Kesibukan Kantor",
+    "aiInsight": "Mengelola banyak tugas sekaligus dapat meningkatkan stres, tapi juga melatih kemampuan multitasking Anda.",
+    "aiQuestion": "Apa yang bisa Anda lakukan untuk mengurangi tekanan selama jam kerja?"
+  },
+  {
+    "id": "4",
+    "user_id": "2",
+    "date": "2023-11-02T20:30:00+07:00",
+    "content": "Menikmati makan malam lezat yang saya masak sendiri, sangat memuaskan!",
+    "mood": "senang",
+    "aiTitle": "Kepuasan Memasak",
+    "aiInsight": "Memasak adalah kegiatan yang bisa meningkatkan kepuasan pribadi dan kemandirian.",
+    "aiQuestion": "Bagaimana Anda bisa lebih sering memasukkan kegiatan memasak dalam rutinitas mingguan Anda?"
+  },
+  {
+    "id": "5",
+    "user_id": "3",
+    "date": "2023-11-03T07:30:00+07:00",
+    "content": "Pagi yang dingin, menghabiskan waktu untuk meditasi dan merasa lebih tenang.",
+    "mood": "senang",
+    "aiTitle": "Meditasi Pagi",
+    "aiInsight": "Meditasi pagi membantu menetapkan nada positif untuk sisa hari Anda dan mengurangi kecemasan.",
+    "aiQuestion": "Apa manfaat lain yang Anda rasakan dari rutin meditasi?"
+  },
+  {
+    "id": "6",
+    "user_id": "3",
+    "date": "2023-11-03T22:00:00+07:00",
+    "content": "Stres dengan deadline mendatang, mencoba tetap fokus.",
+    "mood": "netral",
+    "aiTitle": "Tekanan Deadline",
+    "aiInsight": "Deadline bisa menekan, namun perencanaan yang baik dan istirahat yang cukup dapat membantu Anda mengelolanya dengan lebih efektif.",
+    "aiQuestion": "Bagaimana Anda bisa memperbaiki manajemen waktu Anda dalam menghadapi deadline?"
+  },
+  {
+    "id": "7",
+    "user_id": "4",
+    "date": "2023-11-04T13:00:00+07:00",
+    "content": "Hari ini bertemu dengan teman lama, membahas kenangan masa lalu.",
+    "mood": "senang",
+    "aiTitle": "Reuni dengan Teman Lama",
+    "aiInsight": "Bertemu dengan teman lama bisa mengingatkan Anda pada pengalaman yang membentuk siapa Anda sekarang.",
+    "aiQuestion": "Apa perubahan positif yang Anda sadari dari diri Anda sejak terakhir kali bertemu dengan mereka?"
+  },
+  {
+    "id": "8",
+    "user_id": "4",
+    "date": "2023-11-04T18:45:00+07:00",
+    "content": "Mencoba resep baru hari ini, hasilnya tidak seperti yang diharapkan.",
+    "mood": "sedih",
+    "aiTitle": "Eksperimen Memasak",
+    "aiInsight": "Eksperimen di dapur adalah proses belajar yang bisa memberikan pelajaran penting, meskipun hasilnya tidak sempurna.",
+    "aiQuestion": "Apa yang akan Anda lakukan berbeda dalam resep itu untuk waktu berikutnya?"
+  },
+  {
+    "id": "9",
+    "user_id": "5",
+    "date": "2023-11-05T10:15:00+07:00",
+    "content": "Melakukan yoga di pagi hari dan merasa sangat segar dan siap menghadapi hari.",
+    "mood": "senang",
+    "aiTitle": "Manfaat Yoga Pagi",
+    "aiInsight": "Yoga pagi hari meningkatkan fleksibilitas, kekuatan, dan fokus mental Anda untuk hari itu.",
+    "aiQuestion": "Bagaimana Anda bisa mengintegrasikan yoga lebih lanjut ke dalam rutinitas harian Anda?"
+  },
+  {
+    "id": "10",
+    "user_id": "5",
+    "date": "2023-11-05T21:00:00+07:00",
+    "content": "Merasa frustrasi dengan berita hari ini, mencoba tetap tenang dan tidak terpengaruh.",
+    "mood": "sedih",
+    "aiTitle": "Menghadapi Berita Negatif",
+    "aiInsight": "Berita negatif bisa mempengaruhi suasana hati Anda, tapi belajar untuk mengelola reaksi Anda adalah kunci menjaga kesehatan mental.",
+    "aiQuestion": "Apa strategi yang Anda gunakan untuk menjaga ketenangan ketika dihadapkan dengan berita yang mengganggu?"
+  },
+  {
+    "id": "11",
+    "user_id": "1",
+    "date": "2023-11-06T09:00:00+07:00",
+    "content": "Menemukan buku lama yang belum selesai saya baca, hari ini saya melanjutkannya.",
+    "mood": "senang",
+    "aiTitle": "Kembali ke Buku Lama",
+    "aiInsight": "Menghabiskan waktu untuk membaca buku dapat meredakan stres dan memperkaya pengetahuan.",
+    "aiQuestion": "Apa hal yang menarik dari buku tersebut yang membuat Anda kembali melanjutkannya?"
+  },
+  {
+    "id": "12",
+    "user_id": "1",
+    "date": "2023-11-07T22:30:00+07:00",
+    "content": "Hari yang cukup melelahkan di kantor, banyak tugas menumpuk.",
+    "mood": "sedih",
+    "aiTitle": "Hari yang Melelahkan",
+    "aiInsight": "Hari yang sibuk dapat menguras energi dan meningkatkan tingkat stres Anda.",
+    "aiQuestion": "Apa yang bisa Anda lakukan besok untuk mengurangi beban kerja?"
+  },
+  {
+    "id": "13",
+    "user_id": "2",
+    "date": "2023-11-08T07:15:00+07:00",
+    "content": "Bangun lebih awal hari ini untuk jalan-jalan pagi, sangat menyegarkan.",
+    "mood": "senang",
+    "aiTitle": "Manfaat Jalan Pagi",
+    "aiInsight": "Jalan pagi tidak hanya baik untuk fisik tetapi juga untuk mental Anda.",
+    "aiQuestion": "Bagaimana Anda bisa membuat rutinitas jalan pagi menjadi kebiasaan?"
+  },
+  {
+    "id": "14",
+    "user_id": "2",
+    "date": "2023-11-09T18:00:00+07:00",
+    "content": "Sore ini menonton film komedi yang sangat lucu bersama teman.",
+    "mood": "senang",
+    "aiTitle": "Tawa Bersama Teman",
+    "aiInsight": "Menonton komedi dengan teman dapat memperkuat hubungan dan meningkatkan perasaan bahagia.",
+    "aiQuestion": "Film apa lagi yang ingin Anda tonton bersama teman Anda berikutnya?"
+  },
+  {
+    "id": "15",
+    "user_id": "3",
+    "date": "2023-11-10T14:30:00+07:00",
+    "content": "Hari ini mencoba resep kue baru, dan hasilnya memuaskan!",
+    "mood": "senang",
+    "aiTitle": "Eksperimen Memasak Berhasil",
+    "aiInsight": "Eksperimen di dapur sering kali menghasilkan hasil yang memuaskan dan meningkatkan kepercayaan diri Anda dalam memasak.",
+    "aiQuestion": "Resep baru apa lagi yang ingin Anda coba minggu ini?"
+  },
+  {
+    "id": "16",
+    "user_id": "3",
+    "date": "2023-11-11T21:45:00+07:00",
+    "content": "Mengalami hari yang buruk, banyak hal tidak berjalan seperti yang diharapkan.",
+    "mood": "sedih",
+    "aiTitle": "Hari yang Buruk",
+    "aiInsight": "Hari buruk adalah bagian dari kehidupan, penting untuk mencari cara untuk mengatasi kekecewaan.",
+    "aiQuestion": "Apa yang bisa Anda lakukan untuk meningkatkan suasana hati setelah hari yang menantang?"
+  },
+  {
+    "id": "17",
+    "user_id": "4",
+    "date": "2023-11-12T10:00:00+07:00",
+    "content": "Menyaksikan matahari terbit, merasa bersyukur atas hari yang indah ini.",
+    "mood": "senang",
+    "aiTitle": "Keindahan Matahari Terbit",
+    "aiInsight": "Menyaksikan keindahan alam seperti matahari terbit bisa meningkatkan perasaan syukur dan kedamaian.",
+    "aiQuestion": "Bagaimana Anda bisa menghabiskan lebih banyak waktu di alam?"
+  },
+  {
+    "id": "18",
+    "user_id": "4",
+    "date": "2023-11-13T20:00:00+07:00",
+    "content": "Menghabiskan waktu untuk meditasi malam ini, mencoba menenangkan pikiran.",
+    "mood": "netral",
+    "aiTitle": "Meditasi Menenangkan",
+    "aiInsight": "Meditasi adalah alat yang efektif untuk mengelola stres dan meningkatkan kejernihan mental.",
+    "aiQuestion": "Apa perubahan yang Anda rasakan setelah rutin meditasi?"
+  },
+  {
+    "id": "19",
+    "user_id": "5",
+    "date": "2023-11-14T16:30:00+07:00",
+    "content": "Hari ini berdiskusi panjang dengan rekan kerja tentang proyek baru.",
+    "mood": "netral",
+    "aiTitle": "Diskusi Proyek",
+    "aiInsight": "Diskusi yang konstruktif dapat membuka pandangan baru dan memperkuat kerjasama tim.",
+    "aiQuestion": "Apa hasil utama dari diskusi hari ini yang akan Anda terapkan?"
+  },
+  {
+    "id": "20",
+    "user_id": "5",
+    "date": "2023-11-15T08:20:00+07:00",
+    "content": "Berhasil menyelesaikan lari pagi lebih cepat dari biasanya, merasa sangat bangga.",
+    "mood": "senang",
+    "aiTitle": "Pencapaian Olahraga",
+    "aiInsight": "Meningkatkan performa olahraga Anda adalah tanda peningkatan kebugaran fisik dan mental.",
+    "aiQuestion": "Apa target berikutnya yang ingin Anda capai dalam olahraga?"
+  }
+]

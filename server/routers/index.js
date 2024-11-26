@@ -5,8 +5,6 @@ const journalRouter = require("./journal");
 const authentication = require("../middlewares/authentication");
 const errorHandler = require("../middlewares/errorHandlers");
 const UserController = require("../controllers/UserController");
-const CuisineControllerPublic = require("../controllers/CuisineControllerPublic");
-const CategoryController = require("../controllers/CategoryController");
 
 router.post("/login", UserController.login);
 
