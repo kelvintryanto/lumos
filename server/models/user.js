@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Password required" },
         },
       },
+      profilePicture: DataTypes.STRING,
     },
     {
       sequelize,
