@@ -167,7 +167,9 @@ class JournalController {
 
   static async deleteJournal(req, res, next) {
     try {
+      console.log("deleteJournal");
       const { id } = req.params;
+      console.log(id);
       const journal = await Journal.findByPk(id);
       if (!journal) throw { name: "NotFound", id };
 

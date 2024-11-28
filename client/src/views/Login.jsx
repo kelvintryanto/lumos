@@ -77,7 +77,7 @@ export default function Login({ base_url }) {
             <img src="/logo.png" className="w-28 h-28" alt="" />
             <div className="flex flex-col">
               <h1 className="font-bold text-4xl">LUMOS</h1>
-              <h2 className="text-2xl">Light Up My Own Story</h2>
+              <h2 className="text-2xl mt-3">Connecting Yourself</h2>
             </div>
           </div>
           <div className="flex flex-col w-1/3 mr-10">

@@ -29,8 +29,8 @@ export default function Journal({ base_url }) {
   }
   return (
     <>
-      <div className="flex min-w-screen min-h-screen p-1 bg-fixed bg-gradient-to-tr from-[#000000] via-[#f3d07c] to-[#7c75e4]" data-theme="light">
-        <div className="absolute inset-0 bg-[url('/lumos.jpg')] opacity-10 bg-cover bg-fixed"></div>
+      <div className="relative flex min-w-screen min-h-screen p-1 bg-fixed bg-gradient-to-tr from-[#000000] via-[#f3d07c] to-[#7c75e4]" data-theme="light">
+        <div className="absolute inset-0 bg-[url('/lumos.jpg')] opacity-50 bg-cover bg-fixed"></div>
         <div>
           <SideBar />
         </div>
@@ -58,12 +58,12 @@ export default function Journal({ base_url }) {
                   </div>
                 </form>
               </div>
-              <div className="z-20 space-y-5">
+              <div className="z-20 space-y-3">
                 <TimeLine base_url={base_url} />
               </div>
             </div>
 
-            <LatestJournal />
+            <LatestJournal base_url={base_url} />
           </div>
         </div>
       </div>

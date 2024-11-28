@@ -1,9 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/NavBar";
 import SideBar from "../components/SideBar";
+import axios from "axios";
+import Toastify from "toastify-js";
+import { formatRelativeTime } from "../helpers/dateHelpers";
 
 export default function Profile({ base_url }) {
-  const [user, setUser] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({});
+
+  async function fetchUser() {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`${base_url}/user`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+      setUser(data.user);
+    } catch (error) {
+      console.log(error);
+
+      Toastify({
+        text: error.response.data.message,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #ef4444, #f97316)",
+          borderRadius: "8px",
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast();
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <>
@@ -16,17 +55,26 @@ export default function Profile({ base_url }) {
           <Navbar />
           <div className="flex flex-col pt-16 pl-3">
             <div className="text-4xl mb-3">My Profile</div>
-            <div className="flex">
-              <div className="card card-side bg-base-100 shadow-xl">
-                <figure>
-                  <img src="/defaultUser.jpg" alt="profile photo" />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title">New movie is released!</h2>
-                  <p>Click the button to watch on Jetflix app.</p>
-                  <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Watch</button>
+            <div className="flex bg-slate-500 p-3 mr-3 rounded-md text-slate-200 w-fit z-30">
+              <figure>
+                <img src={`${user.profilePicture ?? "/defaultUser.jpg"}`} className="w-20 aspect-square rounded-full" alt="profile photo" />
+              </figure>
+              <div className="flex flex-col ml-5">
+                <div className="text-xl mb-3">Personal Information</div>
+                <div className="h-1 bg-white rounded-xl mb-4"></div>
+                <div className="flex mb-3">
+                  <div className="flex flex-col">
+                    <h4 className="text-md">Username:</h4>
+                    <h4 className="text-md">Email:</h4>
                   </div>
+                  <div className="flex flex-col">
+                    <h5 className="text-md ml-16">{user?.username}</h5>
+                    <h5 className="text-md ml-16">{user?.email}</h5>
+                  </div>
+                </div>
+                <div className="flex">
+                  <h4 className="text-md mr-1">Member since</h4>
+                  <h5>{user?.createdAt ? formatRelativeTime(user?.createdAt) : ""}</h5>
                 </div>
               </div>
             </div>

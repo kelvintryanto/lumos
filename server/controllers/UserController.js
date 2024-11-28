@@ -106,7 +106,11 @@ class UserController {
   static async read(req, res, next) {
     try {
       const { UserId } = req.loginInfo;
-      const user = await User.findByPk(UserId);
+      const user = await User.findByPk(UserId, {
+        attributes: {
+          exclude: ["password"],
+        },
+      });
 
       res.status(200).json({
         message: "Succeed read user",

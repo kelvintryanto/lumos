@@ -16,7 +16,7 @@ export default function FontSelector() {
 
   return (
     <>
-      <div className="dropdown dropdown-end">
+      <div className="dropdown">
         <div role="button" tabIndex={0} className="border rounded-md px-2 py-1 text-white">
           Font Style
         </div>

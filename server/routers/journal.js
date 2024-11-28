@@ -12,7 +12,7 @@ router.get("/latest", JournalController.readLatestJournal);
 router.post("/create", JournalController.createJournal);
 
 // untuk membaca satu post ketika diklik
-router.get("/:id", JournalController.readJournalById);
+router.get("/:id", journalAuthorization, JournalController.readJournalById);
 
 // hanya untuk update journal saja
 router.patch("/:id", journalAuthorization, JournalController.updateJournal);
