@@ -94,7 +94,15 @@ export default function UpdateProfile({ base_url }) {
                         <input type="text" className="grow" onChange={(e) => setUserName(e.target.value)} defaultValue={username} />
                       </label>
                       <div className="flex justify-end">
-                        <button className="btn btn-outline btn-sm">Update</button>
+                        <button className="btn btn-outline btn-sm">
+                          {loading ? (
+                            <>
+                              <span className="loading loading-spinner"></span> Loading
+                            </>
+                          ) : (
+                            "Update"
+                          )}
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -8,6 +8,7 @@ import axios from "axios";
 export default function Journal({ base_url }) {
   const [loading, setLoading] = useState(false);
   const [journal, setJournal] = useState([]);
+
   const [imageUrl, setImageUrl] = useState({});
 
   async function handleSubmit(e) {
@@ -42,7 +43,12 @@ export default function Journal({ base_url }) {
               <div className="card bg-white p-3">
                 <div className="mb-2 text-xl font-bold">Light Up Your Story here...</div>
                 <form onSubmit={handleSubmit}>
-                  <textarea className="textarea textarea-warning textarea-sm w-full" placeholder="Lama Lama habis tenagaku...." onChange={(e) => setJournal(e.target.value)}></textarea>
+                  <div className="flex w-full">
+                    <div className="w-20 aspect-square rounded-md mr-3">
+                      <img src="/logo.png" className="rounded-md" alt="" />
+                    </div>
+                    <textarea className="textarea textarea-warning textarea-sm w-full" placeholder="Lama Lama habis tenagaku...." onChange={(e) => setJournal(e.target.value)}></textarea>
+                  </div>
                   <div className="w-full justify-between flex mt-3">
                     <label className="btn text-white bg-info btn-info glass btn-xs fa-solid fa-paperclip" htmlFor={`upload`}></label>
                     <input type="file" id={`upload`} className="hidden" onChange={(e) => setImageUrl(e.target.files[0])} />

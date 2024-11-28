@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Toastify from "toastify-js";
+import { formatRelativeTime } from "../helpers/dateHelpers";
 
 export default function LatestJournal({ base_url, fetchJournal }) {
   const [loading, setLoading] = useState(false);
@@ -87,6 +88,15 @@ export default function LatestJournal({ base_url, fetchJournal }) {
         <div className="text-3xl font-bold self-center">Latest Journal</div>
         {journal ? (
           <>
+            <div className="text-center">
+              {loading ? (
+                <>
+                  <div className="skeleton h-4 w-20"></div>
+                </>
+              ) : (
+                <>{journal?.date ? <div className="italic">at {formatRelativeTime(journal?.date)}</div> : ""}</>
+              )}
+            </div>
             <div className={`flex flex-col rounded-md text-sm`}>
               {loading ? (
                 <div className="skeleton w-full h-12 rounded-md px-2 py-1 italic"></div>
@@ -104,6 +114,15 @@ export default function LatestJournal({ base_url, fetchJournal }) {
                     </button>
                   </div>
                 </div>
+              )}
+            </div>
+            <div className="flex justify-center">
+              {loading ? (
+                <>
+                  <div className="skeleton w-16 h-16 aspect-auto object-cover mr-3 rounded-md"></div>
+                </>
+              ) : (
+                <>{journal?.imageUrl ? <img src={journal?.imageUrl} alt="image" className="w-full aspect-auto object-cover mr-3 rounded-md" /> : ""}</>
               )}
             </div>
             <div className={`flex flex-col ${journal?.mood === "senang" ? "bg-yellow-200" : journal?.mood === "netral" ? "bg-gray-200" : journal?.mood === "sedih" ? "bg-blue-200" : ""} p-3 rounded-md text-sm`}>

@@ -64,6 +64,7 @@ class UserController {
         data: profile,
       });
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }

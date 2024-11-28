@@ -22,7 +22,7 @@ export default function SideBar() {
           <img src="/logo.png" alt="Lumos" className="w-12" />
           <div className="flex flex-col items-start justify-center">
             <h1 className="font-bold text-xl">LUMOS</h1>
-            <h2 className="text-xs">Light Up My Own Story</h2>
+            <h2 className="text-xs">Connecting Yourself</h2>
           </div>
         </Link>
         <hr className="my-5" />
