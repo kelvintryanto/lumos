@@ -105,36 +105,39 @@ class UserController {
 
   static async read(req, res, next) {
     try {
-      const users = await User.findAll();
+      const { UserId } = req.loginInfo;
+      const user = await User.findByPk(UserId);
 
       res.status(200).json({
-        message: "Succeed read all users",
-        users,
+        message: "Succeed read user",
+        user,
       });
     } catch (error) {
       next(error);
     }
   }
 
+  // update ini digunakan untuk mengupdate profile
   static async update(req, res, next) {
     try {
-      const { id } = req.params;
-      const { username, email, password, role, phoneNumber, address } = req.body;
+      const { UserId } = req.loginInfo;
+      const { username, email, password, profilePicture } = req.body;
 
-      const user = await User.findByPk(id);
-      if (!user) throw { name: "NotFound", id };
+      const user = await User.findByPk(UserId);
+      if (!user) throw { name: "NotFound", UserId };
 
-      await user.update({ username, email, password, role, phoneNumber, address });
+      await user.update({ username, email, password, profilePicture });
 
-      const staff = {
+      const profile = {
         id: user.id,
         username: user.username,
         email: user.email,
+        profilePicsture: user.profilePicture,
       };
 
       res.status(200).json({
         message: "Succeed update user",
-        staff,
+        profile,
       });
     } catch (error) {
       next(error);
@@ -143,14 +146,10 @@ class UserController {
 
   static async delete(req, res, next) {
     try {
-      console.log("UserController.delete: ", 102);
+      const { UserId } = req.loginInfo;
 
-      const { id } = req.params;
-      console.log(id);
-
-      const user = await User.findByPk(id);
-      console.log(user);
-      if (!user) throw { name: "NotFound", id };
+      const user = await User.findByPk(UserId);
+      if (!user) throw { name: "NotFound", UserId };
 
       await user.destroy();
 

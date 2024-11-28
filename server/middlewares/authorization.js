@@ -6,7 +6,7 @@ const userAuthorization = async (req, res, next) => {
     const user = await User.findByPk(UserId);
     if (!user) throw { name: "NotFound", id };
 
-    if (user.UserId !== UserId) throw { name: "Forbidden" };
+    if (user.id !== UserId) throw { name: "Forbidden" };
     next();
   } catch (error) {
     next(error);

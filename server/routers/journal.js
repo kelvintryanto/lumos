@@ -2,14 +2,24 @@ const JournalController = require("../controllers/JournalController");
 const { journalAuthorization } = require("../middlewares/authorization");
 const router = require("express").Router();
 
-// untuk membaca profil
+// untuk timeline
 router.get("/", JournalController.read);
-// untuk membaca satu post
+
+// untuk latest journal
+router.get("/latest", JournalController.readLatestJournal);
+
+// untuk membuat journal
+router.post("/create", JournalController.createJournal);
+
+// untuk membaca satu post ketika diklik
 router.get("/:id", JournalController.readJournalById);
-// hanya untuk update username dan password
-router.put("/:id", journalAuthorization, JournalController.updateJournal);
+
+// hanya untuk update journal saja
+router.patch("/:id", journalAuthorization, JournalController.updateJournal);
+
 // buat konfirmasinya dengan modal
-// minta ketikkan usernamenya
 router.delete("/:id", journalAuthorization, JournalController.deleteJournal);
+// navigate ke login
+// hapus localstoragenya di client
 
 module.exports = router;
