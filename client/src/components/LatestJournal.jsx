@@ -34,23 +34,23 @@ export default function LatestJournal({ base_url }) {
         <div className="text-3xl font-bold self-center">Latest Journal</div>
         {journal ? (
           <>
-            <div className="flex flex-col bg-slate-100 p-3 rounded-md text-sm">
+            <div className={`flex flex-col ${journal?.mood === "senang" ? "bg-yellow-200" : journal?.mood === "netral" ? "bg-gray-200" : journal?.mood === "sedih" ? "bg-blue-200" : ""} p-3 rounded-md text-sm`}>
               <div className="flex mb-2">Title</div>
               {loading ? <div className="skeleton w-full h-4 rounded-md px-2 py-1"></div> : <div className="w-full h-auto bg-white rounded-md px-2 py-1">{journal.aiTitle}</div>}
             </div>
 
-            <div className="flex flex-col bg-slate-100 p-3 rounded-md text-sm">
+            <div className={`flex flex-col ${journal?.mood === "senang" ? "bg-yellow-200" : journal?.mood === "netral" ? "bg-gray-200" : journal?.mood === "sedih" ? "bg-blue-200" : ""} p-3 rounded-md text-sm`}>
               <div className="flex mb-2">Journal</div>
               {loading ? <div className="skeleton w-full h-12 rounded-md px-2 py-1"></div> : <div className="w-full h-auto bg-white rounded-md px-2 py-1">{journal.content}</div>}
             </div>
 
-            <div className="flex flex-col bg-slate-100 p-3 rounded-md text-sm">
+            <div className={`flex flex-col ${journal?.mood === "senang" ? "bg-yellow-200" : journal?.mood === "netral" ? "bg-gray-200" : journal?.mood === "sedih" ? "bg-blue-200" : ""} p-3 rounded-md text-sm`}>
               <div className="flex mb-2">Insight</div>
               {loading ? <div className="skeleton w-full h-12 rounded-md px-2 py-1 italic"></div> : <div className="w-full h-auto bg-white rounded-md px-2 py-1 italic">{journal.aiInsight}</div>}
             </div>
-            <div className="flex flex-col bg-slate-100 p-3 rounded-md text-sm">
+            <div className={`flex flex-col ${journal?.mood === "senang" ? "bg-yellow-200" : journal?.mood === "netral" ? "bg-gray-200" : journal?.mood === "sedih" ? "bg-blue-200" : ""} p-3 rounded-md text-sm`}>
               <div className="flex mb-2">Reflection Question</div>
-              {loading ? <div className="skeleton w-full h-12 rounded-md px-2 py-1"></div> : <div className="w-full h-auto bg-white rounded-md px-2 py-1">{journal.aiQuestion}</div>}
+              {loading ? <div className="skeleton w-full h-12 rounded-md px-2 py-1 italic"></div> : <div className="w-full h-auto bg-white rounded-md px-2 py-1">{journal.aiQuestion}</div>}
             </div>
           </>
         ) : (

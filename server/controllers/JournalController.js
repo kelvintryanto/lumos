@@ -84,7 +84,7 @@ class JournalController {
           messages: [
             {
               role: "system",
-              content: "Anda adalah asisten AI berbahasa Indonesia yang bertugas menganalisis mood dari catatan harian pengguna. Berdasarkan teks yang diberikan, identifikasi mood utama pengguna dan jawab dengan hanya satu kata: 'senang', 'netral', atau 'sedih'. Jangan memberikan penjelasan tambahan atau kalimat lainnya, hanya satu kata yang mewakili mood pengguna.",
+              content: "Anda adalah asisten AI berbahasa Indonesia yang bertugas menganalisis mood dari catatan harian pengguna. Berdasarkan teks yang diberikan, identifikasi mood utama pengguna dan jawab dengan hanya satu kata: 'senang', 'netral', atau 'sedih'. Jangan memberikan penjelasan tambahan atau kalimat lainnya, hanya satu kata yang mewakili mood pengguna. gunakan semua huruf kecil",
             },
             {
               role: "user",
