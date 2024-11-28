@@ -74,7 +74,7 @@ export default function Login({ base_url }) {
         <div className="absolute inset-0 bg-[url('/lumos.jpg')] opacity-10 bg-cover"></div>
         <div className="flex w-3/4 items-center justify-around bg-slate-50 rounded-xl p-10 m-10 bg-opacity-10 z-10">
           <div className="flex items-center">
-            <img src="/logo.png" className="w-28 h-28" alt="" />
+            <img src="/logo.png" className="w-28 h-28 animate-pulse" alt="" />
             <div className="flex flex-col">
               <h1 className="font-bold text-4xl">LUMOS</h1>
               <h2 className="text-2xl mt-3">Connecting Yourself</h2>
