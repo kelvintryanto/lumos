@@ -1,6 +1,7 @@
 const { compare } = require("../helpers/bcrypt");
 const { User } = require("../models");
 const { signToken } = require("../helpers/jwt");
+const { OAuth2Client } = require("google-auth-library");
 
 class UserController {
   static async googleLogin(req, res, next) {
@@ -14,6 +15,7 @@ class UserController {
       });
 
       const payload = ticket.getPayload();
+      console.log("ini isi payload", payload);
 
       const [user, created] = await User.findOrCreate({
         where: {
@@ -21,13 +23,14 @@ class UserController {
         },
         defaults: {
           email: payload.email,
-          username: payload.email,
+          username: payload.name,
+          profilePicture: payload.picture,
           password: "password_google",
         },
         hooks: false,
       });
 
-      const access_token = createToken({
+      const access_token = signToken({
         id: user.id,
         email: user.email,
         username: user.username,

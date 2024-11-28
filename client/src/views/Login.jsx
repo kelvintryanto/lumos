@@ -41,15 +41,13 @@ export default function Login({ base_url }) {
 
   async function googleLogin(codeResponse) {
     try {
-      console.log("halo");
-      console.log(codeResponse);
       const { data } = await axios.post(`${base_url}/google-login`, null, {
         headers: {
           token: codeResponse.credential,
         },
       });
       localStorage.setItem("access_token", data.access_token);
-      navigate("/");
+      navigate("/journal");
     } catch (error) {
       console.log(error);
 
