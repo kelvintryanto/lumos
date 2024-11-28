@@ -2,7 +2,8 @@ export default function LatestJournal() {
   return (
     <>
       {/* latest Journal */}
-      <div className="flex flex-col space-y-3 pt-3 w-1/5 fixed right-3 top-20 min-h-[calc(100vh-18rem)] overflow-y-auto bottom-5">
+
+      <div className="flex flex-col space-y-3 pt-3 w-1/5 fixed right-3 pr-2 top-20 min-h-[calc(100vh-18rem)] overflow-y-scroll bottom-5">
         <div className="text-3xl font-bold self-center">Latest Journal</div>
 
         <div className="flex flex-col bg-slate-100 p-3 rounded-md">
@@ -23,8 +24,6 @@ export default function LatestJournal() {
           <div className="flex mb-2">Reflection Question</div>
           <div className="w-full h-auto bg-white bg-opacity-80 rounded-md px-2 py-1">Apakah kamu sedang lelah? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo enim nobis, sint esse illum, blanditiis beatae nisi eaque voluptatibus unde nihil ducimus? Rerum, porro tempore.</div>
         </div>
-
-        {/* Ai Title */}
       </div>
     </>
   );

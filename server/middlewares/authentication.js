@@ -21,12 +21,12 @@ const authentication = async (req, res, next) => {
     if (!user) throw { name: "Unauthorized" };
 
     req.loginInfo = {
-      userId: payload.id,
+      UserId: payload.id,
       email: payload.email,
       role: payload.role,
     };
-    //www.youtube.com/watch?v=cO89Hhv1VEI&ab_channel=SebatIn
-    https: next();
+
+    next();
   } catch (error) {
     next(error);
   }

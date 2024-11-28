@@ -3,18 +3,18 @@ const router = express.Router();
 const userRouter = require("./user");
 const journalRouter = require("./journal");
 const authentication = require("../middlewares/authentication");
-const errorHandler = require("../middlewares/errorHandlers");
 const UserController = require("../controllers/UserController");
+const errorHandler = require("../middlewares/errorHandler");
 
+router.post("/register", UserController.register);
 router.post("/login", UserController.login);
 
 // router.use(authentication) << di sini object request nya sudah termanipulasi
+// masuk ke update profile, lalu
 router.use(authentication);
-router.post("/register", UserController.register);
 
-// authorization masukkan sebelum UserController, dalam kasus ini, hanya cuisines update dan delete yang menggunakan authorization
-router.use("/", journalRouter);
-router.use("/profile", userRouter);
+router.use("/user", userRouter);
+router.use("/journal", journalRouter);
 
 router.use(errorHandler);
 module.exports = router;

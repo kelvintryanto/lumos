@@ -51,12 +51,20 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Journal",
       indexes: [
         {
-          unique: false,
+          unique: true,
           fields: ["UserId"],
         },
         {
           unique: false,
           fields: ["mood"],
+        },
+        {
+          unique: false,
+          fields: ["date"],
+        },
+        {
+          unique: false,
+          fields: ["createdAt"],
         },
       ],
     }

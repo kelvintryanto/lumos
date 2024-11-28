@@ -1,21 +1,31 @@
-const { User, Cuisine, Category } = require("../models");
-const authorization = async (req, res, next) => {
+const { User, Journal } = require("../models");
+const userAuthorization = async (req, res, next) => {
   try {
-    const { role, userId } = req.loginInfo;
+    const { UserId } = req.loginInfo;
 
-    if (role === "staff") {
-      const { id } = req.params;
+    const user = await User.findByPk(UserId);
+    if (!user) throw { name: "NotFound", id };
 
-      const cuisines = await Cuisine.findByPk(id);
-      if (!cuisines) throw { name: "NotFound", id };
+    if (user.UserId !== UserId) throw { name: "Forbidden" };
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+const journalAuthorization = async (req, res, next) => {
+  try {
+    const { UserId } = req.loginInfo;
 
-      if (cuisines.authorId !== userId) throw { name: "Forbidden" };
-    }
+    const { id } = req.params;
 
+    const journal = await Journal.findByPk(id);
+    if (!journal) throw { name: "NotFound", id };
+
+    if (journal.UserId !== UserId) throw { name: "Forbidden" };
     next();
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = authorization;
+module.exports = { userAuthorization, journalAuthorization };

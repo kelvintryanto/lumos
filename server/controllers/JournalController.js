@@ -1,13 +1,14 @@
-import { Journal } from "./../models";
+const { Journal } = require("../models");
 
 class JournalController {
-  static async readByUserId(req, res, next) {
+  static async read(req, res, next) {
     try {
       const { UserId } = req.loginInfo;
       const journals = await Journal.findAll({
         where: {
           UserId,
         },
+        order: [["date", "desc"]],
       });
 
       res.status(200).json({
@@ -25,21 +26,7 @@ class JournalController {
     }
   }
 
-  static async createJournalForm(req, res, next) {
-    try {
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   static async createJournal(req, res, next) {
-    try {
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  static async updateJournalForm(req, res, next) {
     try {
     } catch (error) {
       console.log(error);
@@ -62,3 +49,5 @@ class JournalController {
 
   static async;
 }
+
+module.exports = JournalController;

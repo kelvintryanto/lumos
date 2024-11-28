@@ -1,27 +1,27 @@
 const { compare } = require("../helpers/bcrypt");
 const { User } = require("../models");
 const { signToken } = require("../helpers/jwt");
+
 class UserController {
   static async register(req, res, next) {
     try {
-      const { username, email, password, phoneNumber, address } = req.body;
+      const { username, email, password } = req.body;
 
       const user = await User.create({
         username,
         email,
         password,
-        phoneNumber,
-        address,
       });
 
-      const staff = {
+      const profile = {
         id: user.id,
+        username: user.username,
         email: user.email,
       };
 
       res.status(201).json({
-        message: "Success create new Staff",
-        data: staff,
+        message: "Success create new User",
+        data: profile,
       });
     } catch (error) {
       next(error);
@@ -49,7 +49,6 @@ class UserController {
         id: user.id,
         username: user.username,
         email: user.email,
-        role: user.role,
       };
 
       // 5. buat access_tokennya
