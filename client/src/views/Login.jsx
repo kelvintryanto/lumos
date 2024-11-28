@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Toastify from "toastify-js";
+import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login({ base_url }) {
   const [loading, setLoading] = useState(false);
@@ -35,6 +36,37 @@ export default function Login({ base_url }) {
       }).showToast();
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function googleLogin(codeResponse) {
+    try {
+      console.log("halo");
+      console.log(codeResponse);
+      const { data } = await axios.post(`${base_url}/google-login`, null, {
+        headers: {
+          token: codeResponse.credential,
+        },
+      });
+      localStorage.setItem("access_token", data.access_token);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+
+      Toastify({
+        text: error.response.data.message,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #ef4444, #f97316)",
+          borderRadius: "8px",
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast();
     }
   }
 
@@ -85,6 +117,10 @@ export default function Login({ base_url }) {
               <Link to="/register" className="text-sky-600 ml-1">
                 Register here
               </Link>
+            </div>
+            <div className="divider px-10">or</div>
+            <div className="mt-6 flex justify-center items-center">
+              <GoogleLogin onSuccess={googleLogin} />
             </div>
           </div>
         </div>

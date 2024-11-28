@@ -3,6 +3,43 @@ const { User } = require("../models");
 const { signToken } = require("../helpers/jwt");
 
 class UserController {
+  static async googleLogin(req, res, next) {
+    try {
+      const { token } = req.headers;
+      const client = new OAuth2Client();
+
+      const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+
+      const payload = ticket.getPayload();
+
+      const [user, created] = await User.findOrCreate({
+        where: {
+          email: payload.email,
+        },
+        defaults: {
+          email: payload.email,
+          username: payload.email,
+          password: "password_google",
+        },
+        hooks: false,
+      });
+
+      const access_token = createToken({
+        id: user.id,
+        email: user.email,
+        username: user.username,
+      });
+
+      res.status(200).json({ access_token });
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
   static async register(req, res, next) {
     try {
       const { username, email, password } = req.body;

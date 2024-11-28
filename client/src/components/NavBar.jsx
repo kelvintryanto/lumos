@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
+import FontSelector from "./FontSelector";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -23,30 +24,34 @@ export default function Navbar() {
             <path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
           </svg>
         </label>
-        <div className="dropdown dropdown-end">
-          <div role="button" tabIndex={0} className="w-9 h-9 aspect-square rounded-full border bg-[url('/defaultUser.jpg')] bg-contain"></div>
-          <ul tabIndex={0} className="menu dropdown-content bg-white backdrop-blur-3xl rounded-box w-52 p-2 shadow z-10">
-            {/* My Profile */}
-            <li>
-              <Link to="/profile" className="flex items-center">
-                <FontAwesomeIcon icon={faUser} />
-                My Profile
-              </Link>
-            </li>
-            <li>
-              <Link to="/changepassword" className="flex items-center">
-                <FontAwesomeIcon icon={faKey} />
-                Change Password
-              </Link>
-            </li>
-            <hr />
-            <li>
-              <a className="flex items-center" onClick={handleLogout}>
-                <FontAwesomeIcon icon={faSignOut} />
-                Logout
-              </a>
-            </li>
-          </ul>
+
+        <div className="flex items-center space-x-3">
+          <FontSelector />
+          <div className="dropdown dropdown-end">
+            <div role="button" tabIndex={0} className="w-9 h-9 aspect-square rounded-full border bg-[url('/defaultUser.jpg')] bg-contain"></div>
+            <ul tabIndex={0} className="menu dropdown-content bg-white rounded-box w-52 p-2 shadow z-10">
+              {/* My Profile */}
+              <li>
+                <Link to="/profile" className="flex items-center">
+                  <FontAwesomeIcon icon={faUser} />
+                  My Profile
+                </Link>
+              </li>
+              <li>
+                <Link to="/changepassword" className="flex items-center">
+                  <FontAwesomeIcon icon={faKey} />
+                  Change Password
+                </Link>
+              </li>
+              <hr />
+              <li>
+                <a className="flex items-center" onClick={handleLogout}>
+                  <FontAwesomeIcon icon={faSignOut} />
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </>

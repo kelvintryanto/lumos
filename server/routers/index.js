@@ -8,6 +8,7 @@ const errorHandler = require("../middlewares/errorHandler");
 
 router.post("/register", UserController.register);
 router.post("/login", UserController.login);
+router.post("/google-login", UserController.googleLogin);
 
 // router.use(authentication) << di sini object request nya sudah termanipulasi
 // masuk ke update profile, lalu
