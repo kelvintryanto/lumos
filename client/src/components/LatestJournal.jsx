@@ -2,13 +2,14 @@ import { faEye, faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Toastify from "toastify-js";
 import { formatRelativeTime } from "../helpers/dateHelpers";
 
 export default function LatestJournal({ base_url, fetchJournal }) {
   const [loading, setLoading] = useState(false);
   const [journal, setJournal] = useState({});
+  const navigate = useNavigate();
 
   async function fetchLatestJournal() {
     try {
@@ -116,13 +117,13 @@ export default function LatestJournal({ base_url, fetchJournal }) {
                 </div>
               )}
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center rounded-md w-64 h-64">
               {loading ? (
                 <>
                   <div className="skeleton w-16 h-16 aspect-auto object-cover mr-3 rounded-md"></div>
                 </>
               ) : (
-                <>{journal?.imageUrl ? <img src={journal?.imageUrl} alt="image" className="w-full aspect-auto object-cover mr-3 rounded-md" /> : ""}</>
+                <>{journal?.imageUrl ? <img src={journal?.imageUrl} alt="image" className="w-full aspect-square object-cover mx-2 rounded-md" /> : ""}</>
               )}
             </div>
             <div className={`flex flex-col ${journal?.mood === "senang" ? "bg-yellow-200" : journal?.mood === "netral" ? "bg-gray-200" : journal?.mood === "sedih" ? "bg-blue-200" : ""} p-3 rounded-md text-sm`}>

@@ -4,27 +4,32 @@ import Navbar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 import TimeLine from "../components/TimeLine";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Journal({ base_url }) {
   const [loading, setLoading] = useState(false);
-  const [journal, setJournal] = useState([]);
-
-  const [imageUrl, setImageUrl] = useState({});
+  const [journey, setJourney] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       setLoading(true);
-      const body = { journal, imageUrl };
-      const { data } = await axios.post(`${base_url}/journal`, body, {
+      const formData = new FormData();
+      formData.append("imageUrl", imageUrl);
+      formData.append("journey", journey);
+      const response = await axios.post(`${base_url}/journal/create`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
-      console.log(data);
+
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     } finally {
+      navigate(0);
       setLoading(false);
     }
   }
@@ -47,7 +52,7 @@ export default function Journal({ base_url }) {
                     <div className="w-20 aspect-square rounded-md mr-3">
                       <img src="/logo.png" className="rounded-md" alt="" />
                     </div>
-                    <textarea className="textarea textarea-warning textarea-sm w-full" placeholder="Lama Lama habis tenagaku...." onChange={(e) => setJournal(e.target.value)}></textarea>
+                    <textarea className="textarea textarea-warning textarea-sm w-full" placeholder="lama lama lelah juga..." onChange={(e) => setJourney(e.target.value)}></textarea>
                   </div>
                   <div className="w-full justify-between flex mt-3">
                     <label className="btn text-white bg-info btn-info glass btn-xs fa-solid fa-paperclip" htmlFor={`upload`}></label>

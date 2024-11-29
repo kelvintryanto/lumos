@@ -126,12 +126,12 @@ class UserController {
   static async update(req, res, next) {
     try {
       const { UserId } = req.loginInfo;
-      const { username, email, password, profilePicture } = req.body;
+      const { username, password, imageUrl } = req.body;
 
       const user = await User.findByPk(UserId);
       if (!user) throw { name: "NotFound", UserId };
 
-      await user.update({ username, email, password, profilePicture });
+      await user.update({ username, password, profilePicture: imageUrl });
 
       const profile = {
         id: user.id,

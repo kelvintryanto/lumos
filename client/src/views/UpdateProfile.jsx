@@ -4,12 +4,14 @@ import SideBar from "../components/SideBar";
 import axios from "axios";
 import Toastify from "toastify-js";
 import ProfileSideBar from "../components/ProfileSideBar";
+import { useNavigate } from "react-router-dom";
 
 export default function UpdateProfile({ base_url }) {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [user, setUser] = useState({});
   const [username, setUserName] = useState("");
+  const navigate = useNavigate();
 
   async function fetchUser() {
     try {
@@ -42,12 +44,19 @@ export default function UpdateProfile({ base_url }) {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
-      console.log("halo");
+      const body = { imageUrl, username };
+      const { data } = await axios.put(`${base_url}/user`, body, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
     } catch (error) {
       console.log(error);
+    } finally {
+      navigate(0);
     }
   }
 
@@ -84,26 +93,27 @@ export default function UpdateProfile({ base_url }) {
                   <div className="h-1 bg-white rounded-xl mb-4"></div>
                   <div className="flex mb-3">
                     <div className="flex flex-col space-y-3">
-                      <form onSubmit={handleSubmit}></form>
-                      <label className="input input-bordered flex items-center gap-2 text-slate-600 input-md">
-                        Image Url
-                        <input type="text" className="grow" onChange={(e) => setImageUrl(e.target.value)} defaultValue={imageUrl} />
-                      </label>
-                      <label className="input input-bordered flex items-center gap-2 text-slate-600 input-md">
-                        User Name
-                        <input type="text" className="grow" onChange={(e) => setUserName(e.target.value)} defaultValue={username} />
-                      </label>
-                      <div className="flex justify-end">
-                        <button className="btn btn-outline btn-sm">
-                          {loading ? (
-                            <>
-                              <span className="loading loading-spinner"></span> Loading
-                            </>
-                          ) : (
-                            "Update"
-                          )}
-                        </button>
-                      </div>
+                      <form onSubmit={handleSubmit} className="flex flex-col space-y-3">
+                        <label className="input input-bordered flex items-center gap-2 text-slate-600 input-md">
+                          Image Url
+                          <input type="text" className="grow" onChange={(e) => setImageUrl(e.target.value)} defaultValue={imageUrl} />
+                        </label>
+                        <label className="input input-bordered flex items-center gap-2 text-slate-600 input-md">
+                          User Name
+                          <input type="text" className="grow" onChange={(e) => setUserName(e.target.value)} defaultValue={username} />
+                        </label>
+                        <div className="flex justify-end">
+                          <button className="btn btn-outline btn-sm">
+                            {loading ? (
+                              <>
+                                <span className="loading loading-spinner"></span> Loading
+                              </>
+                            ) : (
+                              "Update"
+                            )}
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

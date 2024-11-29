@@ -44,6 +44,39 @@ export default function DeleteAccount({ base_url }) {
     fetchUser();
   }, []);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const { data } = await axios.delete(`${base_url}/user`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+
+      localStorage.clear();
+
+      Toastify({
+        text: data.message,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #ef4444, #f97316)",
+          borderRadius: "8px",
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       <div className="flex min-w-screen min-h-screen p-1 bg-fixed bg-gradient-to-tr from-[#000000] via-[#f3d07c] to-[#7c75e4]" data-theme="light">
@@ -64,7 +97,9 @@ export default function DeleteAccount({ base_url }) {
                   <div className="h-1 bg-white rounded-xl mb-4"></div>
                   <div className="flex mb-3">Are you sure want to delete this account?</div>
                   <div className="flex justify-around">
-                    <button className="btn btn-error btn-sm">Yes</button>
+                    <form onSubmit={handleSubmit}>
+                      <button className="btn btn-error btn-sm">Yes</button>
+                    </form>
                     <button className="btn btn-success btn-sm">No</button>
                   </div>
                 </div>

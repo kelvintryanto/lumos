@@ -8,6 +8,9 @@ import ProfileSideBar from "../components/ProfileSideBar";
 export default function ChangePassword({ base_url }) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({});
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [repeatNewPassword, setRepeatNewPassword] = useState("");
 
   async function fetchUser() {
     try {
@@ -66,15 +69,15 @@ export default function ChangePassword({ base_url }) {
                     <div className="flex flex-col space-y-3">
                       <label className="input input-bordered flex items-center gap-2 text-slate-600 input-md">
                         Old Password
-                        <input type="text" className="grow" onChange="" value="" />
+                        <input type="password" className="grow" onChange="" value="" />
                       </label>
                       <label className="input input-bordered flex items-center gap-2 text-slate-600 input-md">
                         New Password
-                        <input type="text" className="grow" onChange="" value="" />
+                        <input type="password" className="grow" onChange="" value="" />
                       </label>
                       <label className="input input-bordered flex items-center gap-2 text-slate-600 input-md">
                         Repeat New Password
-                        <input type="text" className="grow" onChange="" value="" />
+                        <input type="password" className="grow" onChange="" value="" />
                       </label>
                     </div>
                   </div>

@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { Journal } = require("../models");
 const Groq = require("groq-sdk");
+const handleUpload = require("../utils/cloudinary");
 
 class JournalController {
   static async read(req, res, next) {
@@ -58,9 +59,17 @@ class JournalController {
       let body = {};
       const { UserId } = req.loginInfo;
 
-      const { content } = req.body;
-      body.content = content;
+      const imageBase64 = Buffer.from(req.file.buffer).toString("base64");
+      let dataURI = "data:" + req.file.mimetype + ";base64," + imageBase64;
+      // const cldRes = await handleUpload(dataURI);
 
+      // ini adalah response dari cloudinary
+      const cldRes = await handleUpload(dataURI);
+      console.log(cldRes);
+
+      const content = req.body.journey;
+
+      // const content = journey;
       // groq ai here
       const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -125,10 +134,8 @@ class JournalController {
         });
       }
 
-      const contentTitle = await getContentTitle();
-      const contentInsight = await getContentInsight();
-      const contentMood = await toneContent();
-      const contentQuestion = await getQuestion();
+      const [contentTitle, contentMood, contentInsight, contentQuestion] = await Promise.all([getContentTitle(), toneContent(), getContentInsight(), getQuestion()]);
+
       body.title = contentTitle.choices[0]?.message?.content || "";
       body.mood = contentMood.choices[0]?.message?.content || "";
       body.aiInsight = contentInsight.choices[0]?.message?.content || "";
@@ -136,10 +143,11 @@ class JournalController {
 
       const journal = await Journal.create({
         UserId,
-        content: body.content,
+        content: req.body.journey,
         date: new Date(),
         aiTitle: body.title,
         mood: body.mood,
+        imageUrl: cldRes.url,
         aiInsight: body.aiInsight,
         aiQuestion: body.aiQuestion,
       });

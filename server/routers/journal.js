@@ -1,5 +1,6 @@
 const JournalController = require("../controllers/JournalController");
 const { journalAuthorization } = require("../middlewares/authorization");
+const middlewareUpload = require("../utils/multer");
 const router = require("express").Router();
 
 // untuk timeline
@@ -9,7 +10,7 @@ router.get("/", JournalController.read);
 router.get("/latest", JournalController.readLatestJournal);
 
 // untuk membuat journal
-router.post("/create", JournalController.createJournal);
+router.post("/create", middlewareUpload, JournalController.createJournal);
 
 // untuk membaca satu post ketika diklik
 router.get("/:id", journalAuthorization, JournalController.readJournalById);
