@@ -27,7 +27,7 @@
 | `/user/delete`    | `DELETE`   | `{ "Authorization": "Bearer token" }` | None                             | `201`:{message, users}    |
 | `/journal`        | `GET`      | `{ "Authorization": "Bearer token" }` | None                             | `200`:{message, journals} |
 | `/journal/latest` | `GET`      | `{ "Authorization": "Bearer token" }` | None                             | `200`:{message,journal}   |
-| `/journal/create  | `POST`     | `{ "Authorization": "Bearer token" }` | Form data for image and data     | `200`:{message,journal}   |
+| `/journal/create` | `POST`     | `{ "Authorization": "Bearer token" }` | Form data for image and data     | `200`:{message,journal}   |
 | `/journal/:id`    | `GET`      | `{ "Authorization": "Bearer token" }` | None                             | `200`:{message,journal}   |
 | `/journal/:id`    | `PATCH`    | `{ "Authorization": "Bearer token" }` | Form data for image and data     | `200`:{message,journal}   |
 | `/journal/:id`    | `DELETE`   | `{ "Authorization": "Bearer token" }` | None                             | `201`:{message,journal}   |

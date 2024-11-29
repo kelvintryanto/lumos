@@ -3,6 +3,7 @@ const request = require("supertest");
 const app = require("../app");
 const { sequelize } = require("../models");
 const { hash } = require("../helpers/bcrypt");
+const { signToken } = require("../helpers/jwt");
 
 beforeAll(async () => {
   // ambil data users
@@ -13,6 +14,14 @@ beforeAll(async () => {
     el.password = hash(el.password);
     el.createdAt = el.updatedAt = new Date();
   });
+
+  const payload = {
+    id: 1,
+    username: "adinugroho",
+    email: "adinugroho@example.com",
+  };
+
+  access_token = signToken(payload);
   // karena menggunakan queryInterface
   await sequelize.queryInterface.bulkInsert("Users", users, {});
 });
@@ -21,7 +30,7 @@ afterAll(async () => {
   await sequelize.queryInterface.bulkDelete("Users", null, { truncate: true, cascade: true, restartIdentity: true });
 });
 
-describe("Login User", () => {
+describe("1.Login User", () => {
   describe("Success Login User", () => {
     test("1.a.Should be success to login and send access_token", async () => {
       const response = await request(app).post("/login").send({
@@ -35,7 +44,7 @@ describe("Login User", () => {
     });
   });
 
-  describe("Failed Login User", () => {
+  describe("2.Failed Login User", () => {
     test("1.b.When email not given/input", async () => {
       const response = await request(app).post("/login").send({
         email: "",
@@ -101,7 +110,6 @@ describe("Register User", () => {
   describe("Failed Register User", () => {
     test("1.b.When email not given/input", async () => {
       const response = await request(app).post("/register").send({
-        email: "",
         password: "12345",
       });
 
@@ -113,7 +121,6 @@ describe("Register User", () => {
     test("1.c.Password not given/input", async () => {
       const response = await request(app).post("/register").send({
         email: "user@mail.com",
-        password: "",
       });
 
       expect(response.status).toBe(400);
@@ -127,9 +134,39 @@ describe("Register User", () => {
         password: "12345",
       });
 
-      expect(response.status).toBe(401);
+      expect(response.status).toBe(400);
       expect(response.body).toBeInstanceOf(Object);
-      expect(response.body).toHaveProperty("message", "Invalid email or password");
+      expect(response.body).toHaveProperty("message", "Email registered!");
     });
   });
 });
+
+// user read
+describe("Read User", () => {
+  describe("Success Read User", () => {
+    test("1.a.Should be success to login and send user profile", async () => {
+      const response = await request(app).get("/user/read").set("Authorization", `Bearer ${access_token}`);
+
+      console.log(response.body);
+      expect(response.status).toBe(200);
+      expect(response.body).toBeInstanceOf(Object);
+      expect(response.body).toHaveProperty("access_token", expect.any(String));
+    });
+  });
+  describe("Success Login User", () => {
+    test("1.a.Should be success to login and send access_token", async () => {
+      const response = await request(app).post("/login").send({
+        email: "adinugroho@example.com",
+        password: "12345",
+      });
+
+      expect(response.status).toBe(200);
+      expect(response.body).toBeInstanceOf(Object);
+      expect(response.body).toHaveProperty("access_token", expect.any(String));
+    });
+  });
+});
+
+// user delete
+// journal
+// journal/latest
