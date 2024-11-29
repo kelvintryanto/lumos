@@ -58,19 +58,14 @@ class JournalController {
     try {
       let body = {};
       const { UserId } = req.loginInfo;
-      let cldRes;
 
-      if (req.file) {
-        const imageBase64 = Buffer.from(req.file.buffer).toString("base64");
-        let dataURI = "data:" + req.file.mimetype + ";base64," + imageBase64;
-        // const cldRes = await handleUpload(dataURI);
+      const imageBase64 = Buffer.from(req.file.buffer).toString("base64");
+      let dataURI = "data:" + req.file.mimetype + ";base64," + imageBase64;
+      // const cldRes = await handleUpload(dataURI);
 
-        // ini adalah response dari cloudinary
-        cldRes = await handleUpload(dataURI);
-        console.log(clsRes);
-      } else {
-        cldRes.url = null;
-      }
+      // ini adalah response dari cloudinary
+      const cldRes = await handleUpload(dataURI);
+      console.log(cldRes);
 
       const content = req.body.journey;
 
