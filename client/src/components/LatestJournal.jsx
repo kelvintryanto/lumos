@@ -2,14 +2,13 @@ import { faEye, faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Toastify from "toastify-js";
 import { formatRelativeTime } from "../helpers/dateHelpers";
 
 export default function LatestJournal({ base_url, fetchJournal }) {
   const [loading, setLoading] = useState(false);
   const [journal, setJournal] = useState({});
-  const navigate = useNavigate();
 
   async function fetchLatestJournal() {
     try {
