@@ -10,7 +10,7 @@ import UpdateProfile from "../views/UpdateProfile";
 import ChangePassword from "../views/ChangePassword";
 import DeleteAccount from "../views/DeleteAccount";
 
-const base_url = "http://13.213.34.152";
+const base_url = "https://13.213.34.152";
 
 export const router = createBrowserRouter([
   {
