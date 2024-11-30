@@ -60,7 +60,7 @@ export default function Journal({ base_url }) {
                 <form onSubmit={handleSubmit}>
                   <div className="flex w-full">
                     {previewUrl ? (
-                      <div className="relative w-20 aspect-square rounded-md mr-3">
+                      <div className="relative w-20 aspect-square rounded-md mr-3 flex items-center">
                         <img src={previewUrl} alt="Preview" className="w-full object-cover rounded-md" />
                         {/* Tombol overlay muncul saat hover */}
                         <label htmlFor={`upload`} className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white cursor-pointer opacity-0 hover:opacity-100 transition-opacity rounded-md">
