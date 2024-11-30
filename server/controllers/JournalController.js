@@ -55,19 +55,25 @@ class JournalController {
 
   // hanya createJournal yang menggunakan OpenAI
   static async createJournal(req, res, next) {
+    // membuat cloudinary Response jika ada gambarnya
+    let cldRes = { url: null };
     try {
       let body = {};
       const { UserId } = req.loginInfo;
 
-      const imageBase64 = Buffer.from(req.file.buffer).toString("base64");
-      let dataURI = "data:" + req.file.mimetype + ";base64," + imageBase64;
-      // const cldRes = await handleUpload(dataURI);
+      // menerima file dari multer
+      if (req.file) {
+        const imageBase64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data:" + req.file.mimetype + ";base64," + imageBase64;
+        // const cldRes = await handleUpload(dataURI);
 
-      // ini adalah response dari cloudinary
-      const cldRes = await handleUpload(dataURI);
-      console.log(cldRes);
+        // ini adalah response dari cloudinary
+        cldRes = await handleUpload(dataURI);
+        console.log(cldRes);
+      }
 
-      const content = req.body.journey;
+      const { journey } = req.body;
+      const content = journey;
 
       // const content = journey;
       // groq ai here
@@ -143,11 +149,11 @@ class JournalController {
 
       const journal = await Journal.create({
         UserId,
-        content: req.body.journey,
+        content,
         date: new Date(),
         aiTitle: body.title,
         mood: body.mood,
-        imageUrl: cldRes.url,
+        imageUrl: cldRes.url || null,
         aiInsight: body.aiInsight,
         aiQuestion: body.aiQuestion,
       });
@@ -175,22 +181,21 @@ class JournalController {
 
   static async deleteJournal(req, res, next) {
     try {
-      console.log("deleteJournal");
       const { id } = req.params;
-      console.log(id);
+
       const journal = await Journal.findByPk(id);
       if (!journal) throw { name: "NotFound", id };
 
+      const deletedJournal = { ...journal.get() };
+
       await journal.destroy();
       res.status(200).json({
-        journal,
+        journal: deletedJournal,
       });
     } catch (error) {
       next(error);
     }
   }
-
-  static async;
 }
 
 module.exports = JournalController;

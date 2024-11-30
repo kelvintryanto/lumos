@@ -27,7 +27,8 @@ export default function TimeLine({ base_url }) {
     }
   }
 
-  async function handleDelete(id) {
+  async function handleDelete(e, id) {
+    e.preventDefault();
     try {
       setLoading(true);
       console.log(id);
@@ -38,9 +39,8 @@ export default function TimeLine({ base_url }) {
       });
 
       fetchJournal();
-
       Toastify({
-        text: `Succeed delete ${data.aiTitle}`,
+        text: `Succeed delete ${data.journal.aiTitle}`,
         duration: 3000,
         newWindow: true,
         close: true,
@@ -114,7 +114,7 @@ export default function TimeLine({ base_url }) {
                           <Link to={`/journal/update/${journey?.id}`} className="btn btn-warning btn-xs">
                             <FontAwesomeIcon icon={faPen} />
                           </Link>
-                          <button className="btn btn-error btn-xs" onClick={() => handleDelete(journey?.id)}>
+                          <button className="btn btn-error btn-xs" onClick={(e) => handleDelete(e, journey?.id)}>
                             <FontAwesomeIcon icon={faTrashCan} />
                           </button>
                         </>

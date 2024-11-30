@@ -153,7 +153,7 @@ describe("Read User", () => {
       expect(response.body).toHaveProperty("access_token", expect.any(String));
     });
   });
-  describe("Success Login User", () => {
+  describe("Failed Read User", () => {
     test("1.a.Should be success to login and send access_token", async () => {
       const response = await request(app).post("/login").send({
         email: "adinugroho@example.com",

@@ -14,6 +14,31 @@ const base_url = "http://localhost:3000";
 
 export const router = createBrowserRouter([
   {
+    path: "/",
+    loader: () => {
+      if (localStorage.access_token) {
+        // toast di sini
+        Toastify({
+          text: "You already logged in",
+          duration: 3000,
+          newWindow: true,
+          close: true,
+          gravity: "bottom", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+          stopOnFocus: true, // Prevents dismissing of toast on hover
+          style: {
+            background: "linear-gradient(to right, #10b981, #064e3b)",
+            borderRadius: "8px",
+          },
+        }).showToast();
+        return redirect("/journal");
+      }
+
+      return null;
+    },
+    element: <Login base_url={base_url} />,
+  },
+  {
     path: "/login",
     loader: () => {
       if (localStorage.access_token) {
