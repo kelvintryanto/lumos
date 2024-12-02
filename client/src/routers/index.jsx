@@ -11,7 +11,7 @@ import ChangePassword from "../views/ChangePassword";
 import DeleteAccount from "../views/DeleteAccount";
 
 // const base_url = "https://13.213.34.152";
-const base_url = "lumos.kelvintryanto.xyz";
+const base_url = "https://lumos.kelvintryanto.xyz";
 
 export const router = createBrowserRouter([
   {
